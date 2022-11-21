@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 
 
 @Component({
@@ -11,16 +11,14 @@ import { Chart } from 'chart.js';
 export class JoaoComponent implements OnInit {
 
   constructor() {
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-  }
+    Chart.register(...registerables);
+}
+  @ViewChild("meuCanvas1", { static: true })
+  elemento1!: ElementRef;
+  @ViewChild("meuCanvas2", { static: true })
+  elemento2!: ElementRef;
 
-  @ViewChild("meuCanvas1", { static: true }) elemento1!: ElementRef;
-  @ViewChild("meuCanvas2", { static: true }) elemento2!: ElementRef;
-
-  ngOnInit(): void{
-
-    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-
+  ngOnInit(){
     new Chart(this.elemento1.nativeElement, {
       type: 'doughnut',
       data: {
@@ -28,13 +26,10 @@ export class JoaoComponent implements OnInit {
         datasets: [
           {
             data: [85,72,86],
-            backgroundColor: ["#31a389","#0ead69", "#3bceac"]
-            
+            backgroundColor: ["#31a389","#0ead69", "#3bceac"],
           },
 
         ]
-      },
-      options: {
       }
     });
     var colors = ["#31a389","#0ead69", "#3bceac"];
@@ -59,16 +54,15 @@ export class JoaoComponent implements OnInit {
         datasets: [
           {
             data: [85,72,86,81,84,86,94,60,62,65,41],
-            backgroundColor:  colorGenerator([85,72,86,81,84,86,94,60,62,65,41], colors)
+            backgroundColor:  colorGenerator([85,72,86,81,84,86,94,60,62,65,41], colors),
           }
         ]
 
-      },
-      options: {
       }
-    }
-    );
+    });
   }
 }
+
+
 
 
