@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
+import { NomeService } from '../nome.service';
 
 
 @Component({
@@ -10,28 +11,39 @@ import { Chart, registerables } from 'chart.js';
 
 export class JoaoComponent implements OnInit {
 
-  constructor() {
+  constructor(private serviceAPINome: NomeService) {
     Chart.register(...registerables);
-}
+
+  }
+  
   @ViewChild("meuCanvas1", { static: true })
   elemento1!: ElementRef;
-  @ViewChild("meuCanvas2", { static: true })
-  elemento2!: ElementRef;
+
+  label = [];
+  data = [];
+
+  value = 'Clear me';
 
   ngOnInit(){
+
+    this.serviceAPINome.getByName("lancho").subscribe(
+      teste => console.log(teste)
+    )
+
     new Chart(this.elemento1.nativeElement, {
       type: 'doughnut',
       data: {
-        labels: ["Plano Vida","Hap Saúde","Ut Mais"],
+        labels: this.label,
         datasets: [
           {
-            data: [85,72,86],
+            data: this.data,
             backgroundColor: ["#31a389","#0ead69", "#3bceac"],
           },
 
         ]
       }
     });
+
     var colors = ["#31a389","#0ead69", "#3bceac"];
     var colorGenerator = function (dados: string | any[], colors: any[]) {
       var varColor = []
@@ -47,19 +59,7 @@ export class JoaoComponent implements OnInit {
       }
       return varColor;
   };
-    new Chart(this.elemento2.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: ["20","21","22","23","24","25","26","27","28","29","30"],
-        datasets: [
-          {
-            data: [85,72,86,81,84,86,94,60,62,65,41],
-            backgroundColor:  colorGenerator([85,72,86,81,84,86,94,60,62,65,41], colors),
-          }
-        ]
 
-      }
-    });
   }
 }
 

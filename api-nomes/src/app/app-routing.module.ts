@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { JoaoComponent } from './joao/joao/joao.component';
 
-const routes: Routes = [{path: '', pathMatch: 'full', redirectTo: 'joao'}, {path: 'joao', loadChildren:() => import('./joao/joao.module').then(m => m.JoaoModule)}];
+const routes: Routes = [{path: 'nomes', component: JoaoComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

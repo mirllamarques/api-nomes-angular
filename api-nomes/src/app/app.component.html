@@ -1,25 +1,15 @@
-  <mat-toolbar id="toolbar">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>API nomes</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar>
-
-  <div class="graf">
-    <h1>Nutricionistas por plano</h1>
-    <canvas #meuCanvas1 width="20%" height="10%"></canvas>
-  </div>
-
-
-  <div class="graf">
-    <br>
-    <h1>Consultas por idade</h1>
-    <canvas #meuCanvas2 width="50%" height="10%"></canvas>
-  </div>
+<mat-toolbar id="toolbar">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>API nomes</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+<router-outlet>
+</router-outlet>
