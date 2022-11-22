@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { JoaoComponent } from './joao/joao/joao.component';
+import { NomeComponent } from './nome/nome/nome.component';
 
 const routes: Routes = [
   {path: '', pathMatch: "full", redirectTo: 'nomes'},
-  {path: 'nomes', component: JoaoComponent}]
+  {path: 'nomes', component: NomeComponent}]
   ;
 
 @NgModule({

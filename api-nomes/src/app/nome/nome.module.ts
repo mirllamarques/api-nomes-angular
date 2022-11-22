@@ -7,8 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 
-import { JoaoRoutingModule } from './joao-routing.module';
-import { JoaoComponent } from './joao/joao.component';
+import { NomeRoutingModule } from './nome-routing.module';
 
 
 @NgModule({
@@ -16,7 +15,7 @@ import { JoaoComponent } from './joao/joao.component';
   ],
   imports: [
     CommonModule,
-    JoaoRoutingModule,
+    NomeRoutingModule,
     MatInputModule,
     MatIconModule,
     MatFormFieldModule,
@@ -24,4 +23,4 @@ import { JoaoComponent } from './joao/joao.component';
     FormsModule
   ]
 })
-export class JoaoModule { }
+export class NomeModule { }

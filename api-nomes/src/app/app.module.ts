@@ -13,13 +13,13 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 
 
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { JoaoComponent } from './joao/joao/joao.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NomeComponent } from './nome/nome/nome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    JoaoComponent
+    NomeComponent
   ],
   imports: [
     BrowserModule,

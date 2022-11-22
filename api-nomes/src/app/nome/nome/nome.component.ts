@@ -5,11 +5,11 @@ import { NomeService } from '../nome.service';
 
 @Component({
   selector: 'app-joao',
-  templateUrl: './joao.component.html',
-  styleUrls: ['./joao.component.scss']
+  templateUrl: './nome.component.html',
+  styleUrls: ['./nome.component.scss']
 })
 
-export class JoaoComponent implements OnInit {
+export class NomeComponent implements OnInit {
 
   value = '';
   show = true;
