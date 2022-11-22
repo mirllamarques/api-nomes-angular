@@ -1,4 +1,4 @@
-export interface Res {
+export interface Resposta {
     periodo: string,
     frequencia: number
 }

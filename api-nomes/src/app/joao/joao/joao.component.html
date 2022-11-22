@@ -5,7 +5,9 @@
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
-<button mat-raised-button color="primary">Send</button>
+
+<button mat-raised-button color="primary" (click)="buscaPorNome()">Send</button>
+
 <div class="graf">
   <h1>Nomes:</h1>
   <canvas #meuCanvas1 width="4%" height="2%"></canvas>

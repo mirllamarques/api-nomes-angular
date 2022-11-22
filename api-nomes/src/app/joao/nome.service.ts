@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first } from 'rxjs';
+import { first, Observable } from 'rxjs';
 import { Info } from '../info';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class NomeService {
     private httpClient: HttpClient
   ) { }
 
-  getByName(nome: string) {
+  getByName(nome: string): Observable<Info> {
     return this.httpClient.get<Info>(this.API + nome).pipe(first());
   }
 }

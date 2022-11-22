@@ -11,25 +11,19 @@ import { NomeService } from '../nome.service';
 
 export class JoaoComponent implements OnInit {
 
-  value = 'Nome';
+  value = '';
 
   constructor(private serviceAPINome: NomeService) {
     Chart.register(...registerables);
-
   }
   
   @ViewChild("meuCanvas1", { static: true })
   elemento1!: ElementRef;
 
-  label = [];
-  data = [];
+  label!: string[];
+  data!: number[];
 
   ngOnInit(){
-
-    this.serviceAPINome.getByName("lancho").subscribe(
-      teste => console.log(teste)
-    );
-
     new Chart(this.elemento1.nativeElement, {
       type: 'doughnut',
       data: {
@@ -58,9 +52,26 @@ export class JoaoComponent implements OnInit {
         }
       }
       return varColor;
-  };
-
+    };
   }
+
+  buscaPorNome() {
+
+    this.label = [];
+    this.data = [];
+
+    this.serviceAPINome.getByName(this.value).subscribe(
+      valores => {
+        console.log(valores)
+        console.log(valores.res)
+        valores.res.forEach(element => {
+        this.label.push(element.periodo);
+        this.data.push(element.frequencia);
+      }
+        
+      );}
+  )}
+  
 }
 
 
