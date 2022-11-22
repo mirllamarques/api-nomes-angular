@@ -11,6 +11,8 @@ import { NomeService } from '../nome.service';
 
 export class JoaoComponent implements OnInit {
 
+  value = 'Nome';
+
   constructor(private serviceAPINome: NomeService) {
     Chart.register(...registerables);
 
@@ -22,13 +24,11 @@ export class JoaoComponent implements OnInit {
   label = [];
   data = [];
 
-  value = 'Clear me';
-
   ngOnInit(){
 
     this.serviceAPINome.getByName("lancho").subscribe(
       teste => console.log(teste)
-    )
+    );
 
     new Chart(this.elemento1.nativeElement, {
       type: 'doughnut',
