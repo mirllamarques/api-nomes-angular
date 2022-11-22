@@ -1,14 +1,33 @@
+
+<div class="pesquisa">
+  <h1>Pesquise seu nome aqui</h1>
 <mat-form-field class="example-form-field">
   <mat-label>Nome</mat-label>
-  <input matInput type="text" [(ngModel)]="value">
-  <button *ngIf="value" class = "botao" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+  <input class= "input" matInput type="text" [(ngModel)]="value">
+  <button *ngIf="value" class = "botao" matSuffix mat-icon-button aria-label="Clear" (click)="clean()">
     <mat-icon>close</mat-icon>
   </button>
 </mat-form-field>
 
-<button mat-raised-button color="primary" (click)="buscaPorNome()">Send</button>
+  <button mat-raised-button color="primary" (click)="buscaPorNome()" class="send">Send</button>
 
-<div class="graf">
-  <h1>Nomes:</h1>
-  <canvas #meuCanvas1 width="4%" height="2%"></canvas>
 </div>
+
+<div class="canvas">
+
+  <div class="graf">
+    <h1 [hidden]="show">{{value}} into doughnut</h1>
+    <canvas #meuCanvas1 width="50rem" height="30rem"></canvas>
+  </div>
+
+
+  <div class="line">
+    <h1 [hidden]="show">{{value}} into line</h1>
+    <canvas #meuCanvas2 width="50rem" height="20rem" hidden="show"></canvas>
+
+  </div>
+
+
+</div>
+
+

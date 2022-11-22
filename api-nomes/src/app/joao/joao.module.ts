@@ -13,7 +13,6 @@ import { JoaoComponent } from './joao/joao.component';
 
 @NgModule({
   declarations: [
-    JoaoComponent
   ],
   imports: [
     CommonModule,

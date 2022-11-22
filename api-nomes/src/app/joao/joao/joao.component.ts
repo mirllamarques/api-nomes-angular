@@ -12,66 +12,93 @@ import { NomeService } from '../nome.service';
 export class JoaoComponent implements OnInit {
 
   value = '';
+  show = true;
 
   constructor(private serviceAPINome: NomeService) {
     Chart.register(...registerables);
   }
-  
+
   @ViewChild("meuCanvas1", { static: true })
   elemento1!: ElementRef;
+  @ViewChild("meuCanvas2", { static: true })
+  elemento2!: ElementRef;
 
   label!: string[];
   data!: number[];
 
+  chart1!: Chart<"doughnut", number[], string>;
+  chart2!: Chart<"line", number[], string>;
+
   ngOnInit(){
-    new Chart(this.elemento1.nativeElement, {
+  }
+
+  clean(){
+    this.value = '';
+    this.chart1.destroy();
+    this.chart2.destroy();
+    this.show = true;
+  }
+
+  createChart(){
+
+    this.chart1 = new Chart(this.elemento1.nativeElement, {
       type: 'doughnut',
       data: {
         labels: this.label,
         datasets: [
           {
             data: this.data,
-            backgroundColor: ["#31a389","#0ead69", "#3bceac"],
+            backgroundColor: ["#31a389", "#0d095d", "#9c047d", "#ff8708", "#125007", "#ff0f39", "#003daa", "#fa2019", "#2d2400"],
           },
 
         ]
       }
     });
 
-    var colors = ["#31a389","#0ead69", "#3bceac"];
-    var colorGenerator = function (dados: string | any[], colors: any[]) {
-      var varColor = []
-      var count = 0;
+    this.chart2 = new Chart(this.elemento2.nativeElement, {
+      type: 'line',
+      data: {
+        labels: this.label,
+        datasets: [
+          {
+            label: 'Frequências',
+            data: this.data,
+            backgroundColor: ["#31a389", "#0d095d", "#9c047d", "#ff8708", "#125007", "#ff0f39", "#003daa", "#fa2019", "#2d2400"],
+            pointStyle: 'circle',
+            pointRadius: 10,
+            pointHoverRadius: 15
+          },
 
-      for(var i = 0; i < dados.length; i ++){
-        varColor[i] = colors[count];
-        if(count > 1){
-          count = 0;
-        } else{
-          count++;
-        }
+        ]
       }
-      return varColor;
-    };
+    });
+  }
+
+  destroy(){
+    if(!this.chart1 == undefined){
+      this.chart1.destroy();
+      this.chart2.destroy();
+    }
   }
 
   buscaPorNome() {
 
     this.label = [];
     this.data = [];
+    this.value = this.value.toLowerCase()
+    this.serviceAPINome.getByName(this.value).subscribe(valores => {
+      console.log(valores)
+      console.log(valores[0].res)
+      valores[0].res.forEach(element => {
+      this.label.push(element.periodo);
+      this.data.push(element.frequencia);
+      this.show = false;
+      });
+      this.destroy();
+      this.createChart();
+    })
+  }
 
-    this.serviceAPINome.getByName(this.value).subscribe(
-      valores => {
-        console.log(valores)
-        console.log(valores.res)
-        valores.res.forEach(element => {
-        this.label.push(element.periodo);
-        this.data.push(element.frequencia);
-      }
-        
-      );}
-  )}
-  
 }
 
 

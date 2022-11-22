@@ -14,7 +14,7 @@ export class NomeService {
     private httpClient: HttpClient
   ) { }
 
-  getByName(nome: string): Observable<Info> {
-    return this.httpClient.get<Info>(this.API + nome).pipe(first());
+  getByName(nome: string): Observable<Info[]> {
+    return this.httpClient.get<Info[]>(this.API + nome).pipe(first());
   }
 }
