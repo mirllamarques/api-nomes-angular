@@ -75,27 +75,24 @@ export class JoaoComponent implements OnInit {
   }
 
   destroy(){
-    if(!this.chart1 == undefined){
+    if(!this.show){
       this.chart1.destroy();
       this.chart2.destroy();
     }
   }
 
   buscaPorNome() {
-
     this.label = [];
     this.data = [];
     this.value = this.value.toLowerCase()
     this.serviceAPINome.getByName(this.value).subscribe(valores => {
-      console.log(valores)
-      console.log(valores[0].res)
       valores[0].res.forEach(element => {
       this.label.push(element.periodo);
       this.data.push(element.frequencia);
-      this.show = false;
       });
       this.destroy();
       this.createChart();
+      this.show = false;
     })
   }
 
